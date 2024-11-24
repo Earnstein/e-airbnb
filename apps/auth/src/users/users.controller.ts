@@ -11,9 +11,9 @@ import {
 import { UsersService } from "./users.service";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
-import { CurrentUser } from "../current-user.decorator";
 import { UserDocument } from "./models/user.schema";
 import { JwtAuthGuard } from "../guards/jwt-auth.guard";
+import { CurrentUser } from "@app/common";
 
 @Controller("users")
 export class UsersController {
