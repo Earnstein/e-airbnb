@@ -1,12 +1,19 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+  UnprocessableEntityException,
+} from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { UserRepository } from "./user.repository";
 import * as bcrypt from "bcryptjs";
+import { GetUserDto } from "./dto/get-user.dto";
 @Injectable()
 export class UsersService {
   constructor(private readonly usersRepository: UserRepository) {}
   async create(createUserDto: CreateUserDto) {
+    await this.validateCreateUserDto(createUserDto);
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
     return this.usersRepository.create({
       ...createUserDto,
@@ -14,7 +21,7 @@ export class UsersService {
     });
   }
   findAll() {
-    return `This action returns all users`;
+    return this.usersRepository.find({});
   }
 
   findOne(id: number) {
@@ -36,5 +43,18 @@ export class UsersService {
       throw new UnauthorizedException("Credentials are not valid.");
     }
     return user;
+  }
+
+  private async validateCreateUserDto(createUserDto: CreateUserDto) {
+    try {
+      await this.usersRepository.findOne({ email: createUserDto.email });
+    } catch (err) {
+      return;
+    }
+    throw new UnprocessableEntityException("Email already exists.");
+  }
+
+  async getUser(getUserDto: GetUserDto) {
+    return this.usersRepository.findOne(getUserDto);
   }
 }
