@@ -27,34 +27,34 @@ export class ReservationsController {
       createReservationDto,
       user._id,
     );
-    console.log(user, reservation);
+    console.log(reservation);
     return reservation;
   }
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  findAll() {
-    return this.reservationsService.findAll();
+  async findAll() {
+    return await this.reservationsService.findAll();
   }
 
   @Get(":id")
   @UseGuards(JwtAuthGuard)
-  findOne(@Param("id") id: string) {
-    return this.reservationsService.findOne(id);
+  async findOne(@Param("id") id: string) {
+    return await this.reservationsService.findOne(id);
   }
 
   @Patch(":id")
   @UseGuards(JwtAuthGuard)
-  update(
+  async update(
     @Param("id") id: string,
     @Body() updateReservationDto: UpdateReservationDto,
   ) {
-    return this.reservationsService.update(id, updateReservationDto);
+    return await this.reservationsService.update(id, updateReservationDto);
   }
 
   @Delete(":id")
   @UseGuards(JwtAuthGuard)
-  remove(@Param("id") id: string) {
-    return this.reservationsService.remove(id);
+  async remove(@Param("id") id: string) {
+    return await this.reservationsService.remove(id);
   }
 }

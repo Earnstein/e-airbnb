@@ -1,3 +1,4 @@
+import { CardDto, CreateChargeDto } from "@app/common";
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import Stripe from "stripe";
@@ -12,20 +13,20 @@ export class PaymentsService {
   );
 
   constructor(private readonly configService: ConfigService) {}
-  async createCharge(
-    card: Stripe.PaymentMethodCreateParams.Card,
-    amount: number,
-  ) {
+  async createCharge({ amount }: CreateChargeDto) {
     const paymentMethod = await this.stripe.paymentMethods.create({
       type: "card",
-      card,
+      card: { token: "tok_mastercard" },
     });
     const paymentIntent = await this.stripe.paymentIntents.create({
       amount: amount * 100,
       currency: "usd",
       payment_method: paymentMethod.id,
       confirm: true,
-      payment_method_types: ["card"],
+      automatic_payment_methods: {
+        enabled: true,
+        allow_redirects: "never",
+      },
     });
     return paymentIntent;
   }
