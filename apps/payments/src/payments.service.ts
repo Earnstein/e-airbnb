@@ -12,7 +12,7 @@ export class PaymentsService {
     },
   );
 
-  constructor(private readonly configService: ConfigService) {}
+  constructor(private readonly configService: ConfigService) { }
   async createCharge({ amount }: CreateChargeDto) {
     const paymentMethod = await this.stripe.paymentMethods.create({
       type: "card",
