@@ -21,4 +21,4 @@ import { LoggerModule } from "@app/common";
   controllers: [PaymentsController],
   providers: [PaymentsService],
 })
-export class PaymentsModule {}
+export class PaymentsModule { }
