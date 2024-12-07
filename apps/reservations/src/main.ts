@@ -13,9 +13,9 @@ async function bootstrap() {
   app.useLogger(app.get(Logger));
   app.use(cookieParser());
 
-  await app.listen(configService.get<number>("PORT") ?? 8000, () => {
+  await app.listen(configService.get<number>("HTTP_PORT") ?? 8000, () => {
     console.log(
-      `Reservations service is running on port ${configService.get<number>("PORT") ?? 8000}`,
+      `Reservations service is running on port ${configService.get<number>("HTTP_PORT") ?? 8000}`,
     );
   });
 }
