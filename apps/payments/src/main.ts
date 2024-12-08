@@ -16,10 +16,8 @@ async function bootstrap() {
   });
   app.useLogger(app.get(Logger));
   await app.startAllMicroservices();
-  await app.listen(configService.get<number>("HTTP_PORT") ?? 3000, () => {
-    console.log(
-      `Payments service is running on port ${configService.get<number>("HTTP_PORT") ?? 8003}`,
-    );
-  });
+  console.log(
+    `Payments service is running on port ${configService.get<number>("TCP_PORT") ?? 8003}`,
+  );
 }
 bootstrap();
