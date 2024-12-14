@@ -4,20 +4,20 @@ phases:
   pre_build:
     commands:
       - pwd
-      - ls -R ./apps
+      - ls -la
       - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 058264539722.dkr.ecr.us-east-2.amazonaws.com
   build:
     commands:
-      - docker build -t reservations -f ./apps/reservations/Dockerfile ./apps/reservations
+      - docker build -t reservations -f ./apps/reservations/Dockerfile .
       - docker tag reservations:latest 058264539722.dkr.ecr.us-east-2.amazonaws.com/reservations:latest
 
-      - docker build -t auth -f ./apps/auth/Dockerfile ./apps/auth
+      - docker build -t auth -f ./apps/auth/Dockerfile .
       - docker tag auth:latest 058264539722.dkr.ecr.us-east-2.amazonaws.com/auth:latest
 
-      - docker build -t notifications -f ./apps/notifications/Dockerfile ./apps/notifications
+      - docker build -t notifications -f ./apps/notifications/Dockerfile .
       - docker tag notifications:latest 058264539722.dkr.ecr.us-east-2.amazonaws.com/notifications:latest
 
-      - docker build -t payments -f ./apps/payments/Dockerfile ./apps/payments
+      - docker build -t payments -f ./apps/payments/Dockerfile .
       - docker tag payments:latest 058264539722.dkr.ecr.us-east-2.amazonaws.com/payments:latest
   post_build:
     commands:
