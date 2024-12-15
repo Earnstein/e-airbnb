@@ -25,4 +25,3 @@ phases:
       - docker push 058264539722.dkr.ecr.us-east-2.amazonaws.com/auth:latest
       - docker push 058264539722.dkr.ecr.us-east-2.amazonaws.com/notifications:latest
       - docker push 058264539722.dkr.ecr.us-east-2.amazonaws.com/payments:latest
-      - echo "Build complete"
