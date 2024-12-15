@@ -6,12 +6,11 @@ COPY package.json pnpm-lock.yaml ./
 
 RUN npm install -g pnpm
 
-RUN pnpm install --frozen-lockfile
-
 COPY tsconfig.json nest-cli.json ./
 COPY apps/payments apps/payments
 COPY libs libs
 
+RUN pnpm install -r
 RUN pnpm run build payments
 
 
