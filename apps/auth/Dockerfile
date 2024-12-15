@@ -6,11 +6,12 @@ COPY package.json pnpm-lock.yaml ./
 
 RUN npm install -g pnpm
 
-RUN pnpm install --frozen-lockfile
 
 COPY tsconfig.json nest-cli.json ./
 COPY apps/auth apps/auth
 COPY libs libs
+
+RUN pnpm install --frozen-lockfile
 
 RUN pnpm run build auth
 
