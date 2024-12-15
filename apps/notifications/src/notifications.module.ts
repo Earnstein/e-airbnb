@@ -5,14 +5,12 @@ import * as Joi from "joi";
 import { ConfigModule } from "@nestjs/config";
 import { LoggerModule } from "@app/common";
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
         TCP_PORT: Joi.number().required(),
-        MONGODB_URI: Joi.string().required(),
         MAILTRAP_USER: Joi.string().required(),
         MAILTRAP_PASS: Joi.string().required(),
         MAILTRAP_HOST: Joi.string().required(),
@@ -24,4 +22,4 @@ import { LoggerModule } from "@app/common";
   controllers: [NotificationsController],
   providers: [NotificationsService],
 })
-export class NotificationsModule { }
+export class NotificationsModule {}
