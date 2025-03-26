@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: payments
+  name: payments
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments
+  template:
+    metadata:
+      labels:
+        app: payments
+    spec:
+      containers:
+        - image: 058264539722.dkr.ecr.us-east-2.amazonaws.com/payments:latest
+          name: payments
+          env:
+            - name: TCP_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: ptcpport
+                  key: ptcpPort
+            - name: STRIPE_PUBLISHABLE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stripe-publishable-key
+                  key: STRIPE_PUBLISHABLE_KEY
+            - name: STRIPE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stripe-secret-key
+                  key: STRIPE_SECRET_KEY
+            - name: NOTIFICATIONS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: notifications-host
+                  key: NOTIFICATIONS_HOST
+            - name: NOTIFICATIONS_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: notifications-port
+                  key: NOTIFICATIONS_PORT
+          ports:
+            - containerPort: 3003
