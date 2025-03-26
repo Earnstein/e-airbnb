@@ -18,7 +18,7 @@ export class PaymentsService {
     private readonly configService: ConfigService,
     @Inject(NOTIFICATIONS_SERVICE)
     private readonly notificationsService: ClientProxy,
-  ) { }
+  ) {}
   async createCharge({ amount, email }: PaymentsCreateChargeDto) {
     const paymentMethod = await this.stripe.paymentMethods.create({
       type: "card",

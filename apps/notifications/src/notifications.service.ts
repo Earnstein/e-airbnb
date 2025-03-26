@@ -14,7 +14,7 @@ export class NotificationsService {
       pass: this.configService.get<string>("MAILTRAP_PASS"),
     },
   });
-  constructor(private readonly configService: ConfigService) { }
+  constructor(private readonly configService: ConfigService) {}
   async notifyEmail(data: NotifyEmailDto) {
     await this.transporter.sendMail({
       from: "e-airbnb Notification <no-reply@e-airbnb.com>",

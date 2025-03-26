@@ -5,7 +5,7 @@ import { PaymentsCreateChargeDto } from "./dto/payments-create-charge.dto";
 
 @Controller()
 export class PaymentsController {
-  constructor(private readonly paymentsService: PaymentsService) { }
+  constructor(private readonly paymentsService: PaymentsService) {}
 
   @MessagePattern("create_charge")
   @UsePipes(new ValidationPipe())

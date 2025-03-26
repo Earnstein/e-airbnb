@@ -62,4 +62,4 @@ import {
   controllers: [ReservationsController],
   providers: [ReservationsService, ReservationsRepository],
 })
-export class ReservationsModule { }
+export class ReservationsModule {}

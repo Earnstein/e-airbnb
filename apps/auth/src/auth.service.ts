@@ -10,7 +10,7 @@ export class AuthService {
   constructor(
     private readonly configService: ConfigService,
     private readonly jwtService: JwtService,
-  ) { }
+  ) {}
   async login(user: UserDocument, response: Response) {
     const tokenPayload: TokenPayload = {
       userId: user._id.toHexString(),

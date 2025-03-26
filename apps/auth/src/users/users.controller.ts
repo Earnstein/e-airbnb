@@ -16,7 +16,7 @@ import { CurrentUser, UserDocument } from "@app/common";
 
 @Controller("users")
 export class UsersController {
-  constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService) {}
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {

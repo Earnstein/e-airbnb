@@ -11,7 +11,7 @@ export class ReservationsService {
   constructor(
     private readonly reservationsRepository: ReservationsRepository,
     @Inject(PAYMENTS_SERVICE) private readonly paymentsService: ClientProxy,
-  ) { }
+  ) {}
   async create(
     createReservationDto: CreateReservationDto,
     { _id: userId, email }: UserDto,
