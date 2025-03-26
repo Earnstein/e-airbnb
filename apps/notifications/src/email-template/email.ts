@@ -1,5 +1,5 @@
 export const EMAIL_TEMPLATE = {
-    WELCOME: `<!--
+  WELCOME: `<!--
 * This email was built using Tabular.
 * For more information, visit https://tabular.email
 -->
